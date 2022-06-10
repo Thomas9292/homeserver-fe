@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import { Todo } from 'src/app/model/Todo';
@@ -17,7 +18,8 @@ describe('TodolistComponent', () => {
       declarations: [ TodolistComponent ],
       providers: [
         { provide: TodoService, useValue: todoServiceSpy }
-      ]
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   });

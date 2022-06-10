@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from 'src/app/service/todo.service';
@@ -15,9 +16,8 @@ describe('AddTodoComponent', () => {
       providers: [
         { provide: TodoService, useValue: todoServiceSpy }
       ],
-      imports: [
-        FormsModule
-      ]
+      imports: [ FormsModule ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   });

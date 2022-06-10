@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/Thomas9292/homeserver-fe.svg?branch=main)](https://app.travis-ci.com/Thomas9292/homeserver-fe)
+[![Build Status](https://app.travis-ci.com/Thomas9292/homeserver-fe.svg?branch=master)](https://app.travis-ci.com/Thomas9292/homeserver-fe)
 # HomeserverFe
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
