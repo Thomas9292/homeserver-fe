@@ -2,6 +2,9 @@ language: node_js
 node_js:
   ‐ "14"
 
+services:
+  - docker
+
 addons:
   chrome: stable
 
@@ -14,3 +17,10 @@ install:
 
 script:
   ‐ npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+deploy:
+  provider: script
+  script: bash scripts/docker_push
+  on:
+    branch: master
+    tags: true

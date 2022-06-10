@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  server_domain: "API:8080"
+  server_domain: "http://192.168.2.17:8080"
 };
