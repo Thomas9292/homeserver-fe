@@ -21,6 +21,7 @@ script:
 deploy:
   provider: script
   script: bash scripts/docker_push
+  skip_cleanup: true
   on:
     branch: master
     tags: true
