@@ -21,13 +21,13 @@ export class TodolistComponent implements OnInit, OnDestroy {
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    this.todoService.todosUpdated.subscribe((todos) => {
+    this.todoSubscription = this.todoService.todosUpdated.subscribe((todos) => {
       this._todos = todos;
     })
     this.todoService.refreshTodos();
   }
 
   ngOnDestroy(): void {
-      this.todoSubscription.unsubscribe();
+    this.todoSubscription.unsubscribe();
   }
 }

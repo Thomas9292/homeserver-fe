@@ -292,7 +292,7 @@ input[type="radio"], input[type="checkbox"]{
 }
 
 .input-helper {
-    vertical-align: center;
+    vertical-align: bottom;
     font-size: 13px;
     color: grey;
     font-style: italic;
