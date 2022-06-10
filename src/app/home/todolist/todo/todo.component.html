@@ -1,0 +1,11 @@
+<li [ngClass]="{'completed': todo.done}">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="checkbox" type="checkbox" [checked]="todo.done" [disabled]="loading" (click)="toggleDone()"> 
+        {{ todo.title }}
+        <i class="input-helper"></i>
+    </label>
+  </div>
+  <app-loader *ngIf="loading"></app-loader>
+  <i class="remove mdi mdi-close-circle-outline"></i>
+</li>
