@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Todo } from 'src/app/model/Todo';
+import { TodoService } from 'src/app/service/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -11,7 +12,7 @@ export class TodoComponent implements OnInit {
   @Input() todo: Todo;
   loading = false;
 
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
   }
@@ -19,8 +20,13 @@ export class TodoComponent implements OnInit {
   toggleDone(): void {
     this.todo.done = !this.todo.done;
     this.loading = true;
-    setTimeout(() => {
+    this.todoService.updateTodo(this.todo).subscribe((newTodo) => {
+      this.todo = newTodo;
       this.loading = false;
-    }, 1000);
+    });
+  }
+
+  deleteTodo(): void {
+    this.todoService.deleteTodo(this.todo);
   }
 }

@@ -1,22 +1,36 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Todo } from '../model/Todo';
+
+const TODO_ENDPOINT = 'http://localhost:8080/api/v1/todo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
+  todos: Todo[];
   todosUpdated = new Subject<Todo[]>();
+  getTodosSubscription: Subscription;
 
-  todos: Todo[] = [
-    new Todo("ID1", "This is a todo", "This is the description", new Date(), true),
-    new Todo("ID2", "This is a todo too", "This is the description", new Date(), false),
-    new Todo("ID3", "Yet another todo", "This is the description", new Date(), true)
-  ];
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  refreshTodos(): void {
+    this.getTodosSubscription = this.http.get<Todo[]>(TODO_ENDPOINT).subscribe((todos) => {
+      this.todos = todos;
+      this.todosUpdated.next(todos);
+    });
+  }
 
-  getTodos() {
-    return this.todos.slice();
+  updateTodo(todo: Todo): Observable<Todo> {
+    return this.http.put<Todo>(TODO_ENDPOINT + "/" + todo.id, todo);
+  }
+
+  deleteTodo(todo: Todo): void {
+    this.todos.filter(t => todo.id != t.id);
+    this.todosUpdated.next(this.todos);
+    this.http.delete(TODO_ENDPOINT + "/" + todo.id, { observe: "response"}).subscribe(resp => {
+      this.refreshTodos();
+    });
   }
 }

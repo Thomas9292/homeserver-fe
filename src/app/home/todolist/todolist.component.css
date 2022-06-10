@@ -50,7 +50,7 @@
     color: #000000;
     margin-bottom: 0.625rem;
     text-transform: capitalize;
-    font-size: 0.875rem;
+    font-size: 1.375rem;
     font-weight: 500
 }
 .add-items{
@@ -289,6 +289,15 @@ input[type="radio"], input[type="checkbox"]{
     padding-right: 3px;
     vertical-align: middle;
     color: #fff
+}
+
+.input-helper {
+    vertical-align: center;
+    font-size: 13px;
+    color: grey;
+    font-style: italic;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .text-primary, .list-wrapper .completed .remove{
     color: #405189 !important
