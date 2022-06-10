@@ -1,4 +1,4 @@
 #!/bin/bash
-docker build -t wesselinktc/homeserver-fe
+docker build -t wesselinktc/homeserver-fe .
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 docker push USER/REPO
