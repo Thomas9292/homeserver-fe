@@ -1,0 +1,15 @@
+<form (ngSubmit)="addTodo(f)" #f="ngForm">
+  <div class="add-items d-flex">
+    <input
+      type="text"
+      class="form-control todo-list-input"
+      placeholder="What do you need to do today?"
+      ngModel
+      required
+      name="title">
+    <button class="add btn btn-primary font-weight-bold todo-list-add-btn" [disabled]="!f.valid || loading" type="submit">
+      <span *ngIf="!loading">Add</span>
+      <span *ngIf="loading" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+    </button> 
+  </div>
+</form>

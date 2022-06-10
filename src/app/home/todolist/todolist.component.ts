@@ -14,7 +14,7 @@ export class TodolistComponent implements OnInit, OnDestroy {
   _todos: Todo[] = [];
 
   get todos() {
-    this._todos.sort((a, b) => (a.dateCreated < b.dateCreated ? -1 : 1));
+    this._todos.sort((a, b) => (a.dateCreated! < b.dateCreated! ? -1 : 1));
     return this._todos;
   } 
 

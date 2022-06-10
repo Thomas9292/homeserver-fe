@@ -9,6 +9,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TodolistComponent } from './home/todolist/todolist.component';
 import { TodoComponent } from './home/todolist/todo/todo.component';
 import { LoaderComponent } from './util/loader/loader.component';
+import { AddTodoComponent } from './home/todolist/add-todo/add-todo.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { LoaderComponent } from './util/loader/loader.component';
     NavbarComponent,
     TodolistComponent,
     TodoComponent,
-    LoaderComponent
+    LoaderComponent,
+    AddTodoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, share, Subject, Subscription } from 'rxjs';
+import { SubscriptionLog } from 'rxjs/internal/testing/SubscriptionLog';
 import { Todo } from '../model/Todo';
 
 const TODO_ENDPOINT = 'http://localhost:8080/api/v1/todo';
@@ -12,6 +13,7 @@ export class TodoService {
   todos: Todo[];
   todosUpdated = new Subject<Todo[]>();
   getTodosSubscription: Subscription;
+  addTodoSubscription: Subscription;
 
   constructor(private http: HttpClient) { }
 
@@ -27,10 +29,19 @@ export class TodoService {
   }
 
   deleteTodo(todo: Todo): void {
-    this.todos.filter(t => todo.id != t.id);
+    this.todos = this.todos.filter(t => todo.id != t.id);
     this.todosUpdated.next(this.todos);
     this.http.delete(TODO_ENDPOINT + "/" + todo.id, { observe: "response"}).subscribe(resp => {
       this.refreshTodos();
     });
+  }
+
+  addTodo(todo: Todo): Observable<Todo> {
+    const eventRequest = this.http.post<Todo>(TODO_ENDPOINT, todo).pipe(share());
+    this.getTodosSubscription = eventRequest.subscribe(todo => {
+      this.todos.push(todo);
+      this.todosUpdated.next(this.todos);
+    });
+    return eventRequest;
   }
 }

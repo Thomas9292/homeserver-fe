@@ -5,13 +5,7 @@
               <div class="card px-3">
                   <div class="card-body">
                       <h4 class="card-title">Todo</h4>
-                      <div class="add-items d-flex">
-                        <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
-                        <button class="add btn btn-primary font-weight-bold todo-list-add-btn">
-                            Add
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        </button> 
-                    </div>
+                      <app-add-todo></app-add-todo>
                       <div class="list-wrapper">
                           <ul class="d-flex flex-column-reverse todo-list">
                               <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
