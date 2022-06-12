@@ -10,6 +10,7 @@ import { TodoService } from 'src/app/service/todo.service';
 })
 export class AddTodoComponent implements OnInit {
   loading: boolean = false;
+  descriptionShown: boolean = false;
 
   constructor(private todoService: TodoService) { }
 
@@ -18,10 +19,16 @@ export class AddTodoComponent implements OnInit {
 
   addTodo(f: NgForm) {
     this.loading = true;
-    const newTodo = new Todo(null, f.value.title, "", null, false);
+    const description = f.value.description ? f.value.description : "Test"
+    const newTodo = new Todo(null, f.value.title, description, null, false);
     this.todoService.addTodo(newTodo).subscribe(_ => {
       this.loading = false;
     });
     f.reset();
+    this.descriptionShown = false;
+  }
+
+  showDescription() {
+    this.descriptionShown = true;
   }
 }

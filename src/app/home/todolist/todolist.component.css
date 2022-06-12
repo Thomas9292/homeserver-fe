@@ -54,7 +54,7 @@
     font-weight: 500
 }
 .add-items{
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.3rem;
     overflow: hidden
 }
 .d-flex{
@@ -97,10 +97,6 @@
 .list-wrapper{
     height: 100%;
     max-height: 100%
-}
-.add-items{
-    margin-bottom: 1.5rem;
-    overflow: hidden
 }
 .add-items input[type="text"]{
     border-top-right-radius: 0;

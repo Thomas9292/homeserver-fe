@@ -1,15 +1,33 @@
 <form (ngSubmit)="addTodo(f)" #f="ngForm">
-  <div class="add-items d-flex">
-    <input
-      type="text"
-      class="form-control todo-list-input"
-      placeholder="What do you need to do today?"
-      ngModel
-      required
-      name="title">
-    <button class="add btn btn-primary font-weight-bold todo-list-add-btn" [disabled]="!f.valid || loading" type="submit">
-      <span *ngIf="!loading">Add</span>
-      <span *ngIf="loading" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-    </button> 
+  <div class="todo-container">
+    <div class="add-items d-flex">
+      <input
+        type="text"
+        class="form-control todo-list-input"
+        placeholder="What do you need to do today?"
+        ngModel
+        required
+        name="title">
+      <button class="add btn btn-primary font-weight-bold todo-list-add-btn" [disabled]="!f.valid || loading" type="submit">
+        <span *ngIf="!loading">Add</span>
+        <span *ngIf="loading" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+      </button> 
+    </div>
+    <div class="add-items d-flex description-input-container" *ngIf="descriptionShown">
+      <input
+        type="text"
+        class="form-control todo-list-input"
+        placeholder="Enter your description"
+        ngModel
+        name="description">
+    </div>
+    <div class="show-description" *ngIf="!descriptionShown">
+      <a class="text-decoration-none" (click)="showDescription()">
+        Add a description
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+          <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"></path>
+        </svg>
+      </a>
+    </div>
   </div>
 </form>
